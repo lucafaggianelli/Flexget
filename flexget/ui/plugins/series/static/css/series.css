@@ -28,3 +28,30 @@ ul.releases span {
     margin-bottom: 5px;
     display: block;
 }
+
+ul#search-results {
+    width: 306px;
+    margin: 20px auto;
+    list-style: none;
+}
+ul#search-results li {
+    width:300px;
+    min-height:55px;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    border-bottom: 1px solid #404040;
+    padding: 3px;
+    margin: 0 0 10px 0;
+}
+ul#search-results li:last-child {
+    border: none;
+    margin: 0;
+}
+ul#search-results li:hover {
+    background: #CCCCCC;
+}
+ul#search-results li .title {
+    font-weight: bold;
+    font-family: serif;
+}

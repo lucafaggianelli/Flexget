@@ -81,9 +81,10 @@ def search():
         d = result.__dict__
         del d['_sa_instance_state']
         if '_firstaired' in d:
-            d['_firstaired'] = d['_firstaired'].__str__()
+            d['firstaired'] = d['_firstaired'].__str__()
+            del d['_firstaired']
         if 'firstaired' in d:
-            del d['firstaired']
+            d['firstaired'] = d['firstaired'].__str__()
         series_list.append(d)
 
     return json.dumps(series_list)
