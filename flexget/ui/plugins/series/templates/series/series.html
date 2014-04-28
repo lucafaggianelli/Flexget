@@ -42,30 +42,7 @@
         {% endfor %}
         
     {% else %}
-        <h1>Latest 10 Releases</h1>
-        <ul class="releases">
-            {% for release in releases %}
-                <li class="{% if release.downloaded %}downloaded{% endif %}">
-                    <a href="{{ url_for('.forget_episode', rel_id=release.id) }}"
-                        style="float:right;color:#999">Forget</a>
-                    <a href="{{ url_for('.episodes',name=release.episode.series.name) }}">
-                        {{ release.title }}</a>
-                    {% if release.episode.is_premiere %} - 
-                        {{ release.episode.is_premiere }}
-                    {% endif %}<br />
-                    <span>
-                    {% if release.previous %}
-                        <img src="{{ url_for('static', filename='img/tick.png') }}" />
-                        Succesfully downloaded "{{ release.previous.title }}" 
-                        {{ release.episode.first_seen|pretty_age }}
-                    {% else %}
-                        Downloaded {{ release.episode.first_seen|pretty_age }}
-                    {% endif %}
-                    </span>
-                </li>
-            {% endfor %}
-        </ul>
-        <br />
-        <a href="/log" style="color: #333;text-decoration: underline">View more in the logs</a>
+        <h1>Search TV Series</h1>
+        <input type="text" name="name" />
     {% endif %}
 {% endblock %}

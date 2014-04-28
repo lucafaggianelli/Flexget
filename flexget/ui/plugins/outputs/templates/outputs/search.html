@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('.static', filename='css/series.css') }}" type="text/css" media="screen"/>
+{% endblock %}
+
+{% block menu %}
+
+    {% if report %}
+        <ul id="cat">
+            {% for series in report %}
+                {% if series.episodes %}
+                <li>
+                    <div class="item{% if series.name == name %} selected{% endif %}">
+                        <a href="{{ url_for('.episodes', name=series.name) }}">{{ series.name|title }}</a>
+                    </div>
+                </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No series catalogued.</p>
+    {% endif %}
+
+{% endblock %}

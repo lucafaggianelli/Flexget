@@ -240,6 +240,28 @@ class TVDBSearchResult(Base):
     series = relation(TVDBSeries, backref='search_strings')
 
 
+def free_search(name):
+    """Returns a list of match"""
+    url = server + 'GetSeries.php?seriesname=%s&language=%s' % (urllib.quote(name), language)
+    try:
+        page = requests.get(url).content
+    except RequestException as e:
+        raise LookupError("Unable to get search results for %s: %s" % (name, e))
+    xmldata = ElementTree.fromstring(page)
+    if xmldata is None:
+        log.error("Didn't get a return from tvdb on the series search for %s" % name)
+        return
+        
+    series_list = []
+    for s in xmldata.findall('Series'):
+        series = TVDBSeries()
+        series.update_from_xml(s)
+        if series.id:
+            series_list.append(series)
+
+    return series_list
+
+
 def find_series_id(name):
     """Looks up the tvdb id for a series"""
     url = server + 'GetSeries.php?seriesname=%s&language=%s' % (urllib.quote(name), language)
