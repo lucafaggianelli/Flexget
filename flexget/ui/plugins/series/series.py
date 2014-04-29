@@ -20,6 +20,11 @@ try:
 except ImportError:
     raise DependencyError(issued_by='ui.series', missing='api_tvdb')
 
+try:
+    from flexget.plugins.xbmcjson import XBMC
+except ImportError:
+    raise DependencyError(issued_by='ui.series', missing='xbmcjson')
+
 
 series_module = Blueprint('series', __name__)
 log = logging.getLogger('ui.series')
@@ -41,6 +46,14 @@ def pretty_age_filter(value):
 
 @series_module.route('/')
 def index():
+    try: 
+        argFrom = request.args.get('from','')
+        print 'from arg is',argFrom
+        if argFrom == '': return '[]'
+        else: return json.dumps(getSeriesFromProvider(argFrom))
+    except KeyError:
+        return '[]'
+
     releases = db_session.query(Release).order_by(desc(Release.id)).limit(10).all()
     for release in releases:
         if release.downloaded == False and len(release.episode.releases) > 1:
@@ -50,6 +63,27 @@ def index():
 
     context = {'releases': releases}
     return render_template('series/series.html', **context)
+
+
+def getSeriesFromProvider(provider):
+    if provider == 'xbmc':
+        xbmc = XBMC('http://192.168.1.103/jsonrpc')
+        series = xbmc.VideoLibrary.GetTVShows({"properties": ['imdbnumber', 'episode', 'fanart']})
+        try: 
+            if series['result']['tvshows']:
+                return series['result']['tvshows']
+        except KeyError:
+            print series['error']
+            return []
+    else: return []
+
+
+def getSeriesDetailsFromProvider(provider, seriesid):
+    xbmc = XBMC('http://192.168.1.103/jsonrpc')
+    series = xbmc.VideoLibrary.GetTVShowDetails({
+        "tvshowid": seriesid,
+        "properties": ['imdbnumber', 'episode', 'fanart']
+    })
 
 
 @series_module.context_processor
