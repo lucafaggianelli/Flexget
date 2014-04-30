@@ -1,5 +1,16 @@
 /* series ui plugin */
 
+body {
+    overflow: hidden;
+}
+
+img#background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
 ul.releases {
     line-height: 1.4;
     list-style: none;
@@ -29,29 +40,97 @@ ul.releases span {
     display: block;
 }
 
+#my-series {
+    color: white;
+    font-size: 50px;
+    display: inline-block;
+    line-height: 70px;
+    margin:0;
+    vertical-align: top;
+    text-shadow: 2px 2px 2px #000000;
+}
+
+#or {
+    color: white;
+    font-size: 35px;
+    line-height: 70px;
+    display: inline-block;
+    margin: 0 30px;
+    text-shadow: 2px 2px 2px #000000;
+}
+
+#query-container {
+    display: inline-block;
+    line-height: 50px;
+    z-index: 50;
+    font-size: 40px;
+    color: white;
+    text-shadow: 2px 2px 2px #000000;
+    background: rgba(255,255,255,.5);
+    box-shadow: 0 0 20px 12px rgba(255,255,255,.5);
+}
+
+input#query {
+    color: inherit;
+    font-size: inherit;
+    text-shadow: inherit;
+    border: none;
+    background: none;
+    border-bottom: 1px solid #202020;
+    padding: 5px 10px;
+    margin: 0 0 0 10px;
+}
+
 ul#search-results {
-    width: 306px;
-    margin: 20px auto;
+    width: 300px;
+    /*margin: 20px auto;*/
+    margin: 0;
+    width: 100%;
     list-style: none;
 }
 ul#search-results li {
     width:300px;
     min-height:55px;
-    text-align: center;
     cursor: pointer;
     border: none;
     border-bottom: 1px solid #404040;
-    padding: 3px;
-    margin: 0 0 10px 0;
+    padding: 0;
+    border-radius: 0 0 4px 4px;
+    background: rgba(20,20,20,.7);
+    margin: 10px;
+    color: #FFFFFF;
+    text-shadow: 1px 1px 1px #000000;
+    display: -moz-inline-stack;
+    display: inline-block;
+    vertical-align: top;
+    zoom: 1;
+    *display: inline;
+    _height: 250px;
+}
+ul#search-results li img {
+    width:300px;
+    height:55px;
 }
 ul#search-results li:last-child {
     border: none;
     margin: 0;
 }
 ul#search-results li:hover {
-    background: #CCCCCC;
+    box-shadow: 0 0 3px 3px #4786C9;
 }
 ul#search-results li .title {
     font-weight: bold;
     font-family: serif;
+    text-align: center;
+    padding: 3px 5px;
+    margin: 0;
+    font-size: 1.5em;
+}
+ul#search-results li .description {
+    font-family: sans-serif;
+    font-style: italic;
+    text-align: justify;
+    border-top: 1px solid #B88914;
+    padding: 10px;
+    margin: 0 4px;
 }
