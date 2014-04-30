@@ -33,7 +33,7 @@
         {% for item in menu -%}
             <li>
                 <a href="{{ item.href }}" {%- if item.current is defined %} class="current" {% endif -%}>
-                    {{ item.caption }}
+                    {% if item.href == '/outputs' %} <i class="fa fa-cog"></i> {%- else -%} {{ item.caption }} {%- endif %}
                 </a>
             </li>
       {% endfor %}
