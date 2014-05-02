@@ -28,7 +28,28 @@
 {% block main %}
 
     {% if series %}
-        <h1>{{ series.seriesname|title }} - {{series.rating}}/10</h1>
+        <h1>{{ series.seriesname|title }}
+        
+        {%- if series.rating %}
+        <span style="color:#B88914;">
+        {% set rating = range(0,(series.rating/2)|int) %}
+        {% for i in rating %}
+            <i class="fa fa-star"></i>
+        {% endfor %}
+        
+        {% set half = (series.rating - (series.rating|int))|round|int %}
+        {% if half %}
+            <i class="fa fa-star-half-o"></i>
+        {% endif %}
+        
+        {% set rating_fill = range(0,5-((series.rating/2)|int)-half) %}
+        {% for i in rating_fill %}
+            <i class="fa fa-star-o"></i>
+        {% endfor %}
+        {# series.rating #}
+        </span>
+        {% endif -%}
+        </h1>
         
         <div id="details">
             <img src="http://thetvdb.com/banners/{{series.poster}}" />
