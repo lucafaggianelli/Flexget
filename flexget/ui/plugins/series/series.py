@@ -54,6 +54,7 @@ def index():
                     release.previous = prev_rel
 
     context = {'releases': releases}
+    print context
     return render_template('series/series.html', **context)
 
 
@@ -61,9 +62,7 @@ def index():
 def getSeriesFromProvider(provider):
     try: 
         argFrom = request.args.get('from','')
-        print 'from arg is',argFrom
         if argFrom == '': return '[]'
-        else: return json.dumps(getSeriesFromProvider(argFrom))
     except KeyError:
         return '[]'
 
@@ -72,10 +71,10 @@ def getSeriesFromProvider(provider):
         series = xbmc.VideoLibrary.GetTVShows({"properties": ['imdbnumber', 'episode', 'fanart']})
         try: 
             if series['result']['tvshows']:
-                return series['result']['tvshows']
+                return json.dump(series['result']['tvshows'])
         except KeyError:
             print series['error']
-            return []
+            return '[]'
     else: return []
 
 
@@ -95,9 +94,12 @@ def series_list():
 
 @series_module.route('/<name>')
 def episodes(name):
+    """
     query = db_session.query(Episode).join(Episode.series)
     episodes = query.filter(Series.name == name).order_by(desc(Episode.identifier)).all()
-    context = {'episodes': episodes, 'name': name}
+    """
+    series = lookup_series(tvdb_id=name)
+    context = {'series': series}
     return render_template('series/series.html', **context)
 
 

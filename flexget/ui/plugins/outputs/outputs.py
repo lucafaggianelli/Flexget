@@ -91,4 +91,4 @@ def forget_episode(rel_id):
     return render_template('series/forget.html', **context)
 
 
-register_plugin(outputs_module, menu='Outputs')
+register_plugin(outputs_module)

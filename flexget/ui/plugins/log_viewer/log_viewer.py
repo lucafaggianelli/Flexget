@@ -107,4 +107,4 @@ def initialize():
     handler = DBLogHandler()
     logger.addHandler(handler)
 
-register_plugin(log_viewer, menu='Log', order=256)
+register_plugin(log_viewer, order=256)

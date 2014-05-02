@@ -116,9 +116,13 @@ def register_plugin(blueprint, menu=None, order=128, home=False):
         register_home(blueprint.name + '.index')
 
 
-def register_menu(href, caption, order=128):
+def register_menu(href, entry, order=128):
     global _menu
-    _menu.append({'href': href, 'caption': caption, 'order': order})
+    print entry, type(entry)
+    if type(entry) == str or type(entry) == unicode:
+        _menu.append({'href': href, 'caption': entry, 'order': order})
+    elif type(entry) == dict:
+        _menu.append({'href': href, 'caption': entry['caption'], 'icon': entry['icon'], 'order': order})
     _menu = sorted(_menu, key=lambda item: item['order'])
 
 

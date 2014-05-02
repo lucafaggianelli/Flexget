@@ -19,4 +19,4 @@ def index():
     context = {'items': db_session.query(History).order_by(desc(History.time)).limit(50).all()}
     return render_template('history/history.html', **context)
 
-register_plugin(history, menu='History')
+register_plugin(history)

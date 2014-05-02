@@ -20,4 +20,4 @@ def now():
     return 'Shutdown Complete'
 
 
-register_plugin(shutdown, menu='Shutdown', order=512)
+register_plugin(shutdown, menu={'caption':'Shutdown','icon':'power-off'}, order=512)

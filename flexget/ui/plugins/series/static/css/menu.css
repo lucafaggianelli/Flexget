@@ -1,7 +1,7 @@
 /* main navigation */
 
 ul#navbar {
-    width: 100%;
+    display: inline-block;
     height: 43px;
     font-size: 1.5em;
     color: #EEEEEE;

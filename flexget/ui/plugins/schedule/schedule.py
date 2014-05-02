@@ -108,4 +108,4 @@ def get_scheduled_tasks():
     return [item.task for item in db_session.query(Schedule).all()]
 
 
-register_plugin(schedule, menu='Schedule')
+register_plugin(schedule)

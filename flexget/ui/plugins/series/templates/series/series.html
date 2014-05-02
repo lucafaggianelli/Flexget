@@ -27,8 +27,24 @@
 
 {% block main %}
 
-    {% if name %}
-        <h1>{{ name|title }}</h1>
+    {% if series %}
+        <h1>{{ series.seriesname|title }} - {{series.rating}}/10</h1>
+        
+        <div id="details">
+            <img src="http://thetvdb.com/banners/{{series.poster}}" />
+            <p>{{series.overview}}</p>
+            <div class="clear-float"></div>
+        </div>
+
+        <ul id="actions">
+            <li><span class="fa-stack">
+                <i class="fa fa-eye fa-stack-2x"></i><i class="fa fa-plus fa-stack-1x green sub"></i>
+            </span></li>
+            <li><span class="fa-stack">
+                <i class="fa fa-rss fa-2x"></i></li>
+            </span></li>
+        </ul>
+        
         {% for episode in episodes %}
         <a href="{{ url_for('.forget_episode', rel_id=episode.releases.0.id) }}" style="float:right;color:#999">Forget</a>
         <h4>{{ episode.identifier }}{% if episode.is_premiere %} - {{ episode.is_premiere }}{% endif %}</h4>
@@ -43,8 +59,8 @@
         {% endfor %}
         
     {% else %}
-        <div>
-            <p id="my-series">My series</p>
+        <div id="search-container">
+            <p id="my-series"><a href="/series">My series</a></p>
             <p id="or">or</p>
             <div id="query-container">
                 <i class="fa fa-search"></i>

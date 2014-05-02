@@ -16,11 +16,11 @@ textInput.keyup(function(event) {
 function createHtml() {
 
     textInput = $('#query');
-    textInput.width(window.innerWidth * .3);
+    textInput.width(Math.ceil(window.innerWidth * .3));
     var container = $('#query-container');
 console.log(container.find('i').width(), textInput.width());
     container.css({
-        width: textInput.width() + container.find('i').width() + 20 + 20
+        width: textInput.width() + container.find('i').width() + 20 + 20 + 1
     });
 }
 
@@ -55,7 +55,7 @@ function searchSeries(query) {
 }
 
 function createLi(series) {
-    var html = '<li>';
+    var html = '<li><a href="/series/'+series.id+'">';
     
     if (series.banner)
         html += '<img src="http://thetvdb.com/banners/'+series.banner+'"/>';
@@ -63,7 +63,7 @@ function createLi(series) {
     if (series.overview)
         html += '<p class="description">'+series.overview+'</p>'
     
-    html += '</li>';
+    html += '</a></li>';
 
     return html;
 }

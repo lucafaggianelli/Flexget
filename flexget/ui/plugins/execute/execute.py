@@ -53,4 +53,4 @@ def progress(as_list=False):
     return jsonify(result)
 
 
-register_plugin(execute, menu='Execute')
+register_plugin(execute)
