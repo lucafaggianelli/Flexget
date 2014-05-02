@@ -18,17 +18,15 @@ input:focus, button:focus {
 }
 
 #container {
+    height: 100%;
     margin: 0 auto;
     width: 100%;
     min-width: 800px;
     max-width: 1200px;
-    -moz-box-shadow: 0 0 20px #000;
-    -webkit-box-shadow: 0 0 20px #000;
-    box-shadow: 0 0 20px #000;
 }
 
 #layout {
-    background: url('/static/img/construction.png') repeat-x;
+    height: 100%;
     padding: 0 20px;
     z-index: 100;
     position: relative;
@@ -44,12 +42,11 @@ a {
 }
 
 a:hover {
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 body {
     height: 100%;
-    background-image: url('/static/img/background.gif');
     font-size: 13px;
     font-family: Arial, SunSans-Regular, Sans-Serif;
     padding: 0;
@@ -73,10 +70,8 @@ h3 {
 }
 
 #content-container {
-    float: left;
     width: 100%;
-
-    background: #fff url('/static/img/menu.png') repeat-y;
+    height: 100%;
 }
 
 #menu {
@@ -93,6 +88,7 @@ h3 {
 }
 
 #main {
+    height: 100%;
     left: 200px;
     right: 0;
     bottom: 0;
@@ -108,6 +104,7 @@ h3 {
 
 #footer
 {
+    display:none;
     clear: left;
     background: #FF702E;
     text-align: right;

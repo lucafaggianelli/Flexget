@@ -1,4 +1,4 @@
-{% extends "layout.html" %}
+{% extends "series/layout.html" %}
 
 {% block head %}
     <link rel="stylesheet" href="{{ url_for('.static', filename='css/series.css') }}" type="text/css" media="screen"/>
@@ -43,8 +43,14 @@
         {% endfor %}
         
     {% else %}
-        <p><input type="text" id="query" name="query" /></p>
-        
+        <div>
+            <p id="my-series">My series</p>
+            <p id="or">or</p>
+            <div id="query-container">
+                <i class="fa fa-search"></i>
+                <input type="text" id="query" name="q" tabindex=1 />
+            </div>
+        </div>
         <ul id="search-results"></ul>
     {% endif %}
 {% endblock %}

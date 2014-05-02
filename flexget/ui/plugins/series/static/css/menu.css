@@ -1,0 +1,106 @@
+/* main navigation */
+
+ul#navbar {
+    width: 100%;
+    height: 43px;
+    font-size: 1.5em;
+    color: #EEEEEE;
+    background: rgba(20,20,20,.7);
+    text-shadow: 1px 1px 1px #000000;
+    list-style-type: none;
+    margin: 10px 0 0 0;
+    box-shadow: 0 3px 4px rgba(20,20,20,.7);
+    padding: 0;
+    border: 2px solid #B88914;
+    border-width: 2px 0;
+}
+
+ul#navbar li {
+    display: block;
+    float: left;
+    margin: 0 0 0 5px;
+    height: 100%;
+}
+
+ul#navbar li a {
+    color: inherit;
+    display: block;
+    float: left;
+    padding: 0 15px;
+    line-height: 43px;
+    height: 100%;
+}
+
+ul#navbar li a:hover {
+}
+
+ul#navbar li a.current {
+    background: #B88914;
+}
+
+/* left menu */
+
+#menu {
+    font-family: Verdana, Lucida, Geneva, Helvetica, Arial, sans-serif;
+    border-right: 1px solid #000;
+}
+
+#menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+#menu li {
+    border-bottom: 1px solid #000;
+    margin: 0;
+}
+
+#menu li div.item {
+    display: block;
+    padding: 5px 5px 5px 0.5em;
+    border-left: 10px solid #222;
+    background-color: #444;
+}
+
+#menu li div.item a {
+    color: #fff;
+    text-decoration: none;
+}
+#menu li div.item.selected
+{
+    border-left: 10px solid #FF702E;
+    background-color: #666;
+}
+
+#menu li div.item:hover {
+    border-left: 10px solid #FF702E;
+    background-color: #0079B2;
+}
+
+#menu li div.item div.actions {
+    float: right;
+    display: none;
+}
+
+/* category menu */
+
+#cat dt div {
+    display: block;
+    padding: 5px 5px 5px 0.5em;
+    border-bottom: 1px solid #000;
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.expand {
+    background: url('/static/img/fatcow-icons/32x32/bullet_toggle_plus.png') 0 no-repeat;
+    padding-left: 2.5em !important;
+}
+
+.collapse {
+    background: url('/static/img/fatcow-icons/32x32/bullet_toggle_minus.png') 0 no-repeat;
+    padding-left: 2.5em !important;
+}

@@ -5,8 +5,8 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <title>FlexGet</title>
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/menu.css') }}" type="text/css" media="screen"/>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/layout.css') }}" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="{{ url_for('.static', filename='css/menu.css') }}" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="{{ url_for('.static', filename='css/layout.css') }}" type="text/css" media="screen"/>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/forms.css') }}" type="text/css" media="screen"/>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}" type="text/css" media="screen"/>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/ui-lightness/jquery-ui-1.8.6.custom.css') }}" type="text/css" media="screen"/>
@@ -25,15 +25,16 @@
 
 <div id="container">
 
+    <!--
     <div id="header">
     {% block header %}&nbsp;{% endblock %}
     </div>
-
+-->
     <ul id="navbar">
         {% for item in menu -%}
             <li>
                 <a href="{{ item.href }}" {%- if item.current is defined %} class="current" {% endif -%}>
-                    {% if item.href == '/outputs' %} <i class="fa fa-cog"></i> {%- else -%} {{ item.caption }} {%- endif %}
+                    {% if item.href == '/outputs' %} <i class="fa fa-cog" style="line-height:inherit;"></i> {%- else -%} {{ item.caption }} {%- endif %}
                 </a>
             </li>
       {% endfor %}
@@ -41,11 +42,13 @@
 
     <div id="content-container">
 
+        <!--
         <div id="menu">
             {% block menu %}
             {% endblock %}
         </div>
-
+        -->
+        
         <div id="main">
 
           <!-- flash messages -->

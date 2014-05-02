@@ -103,7 +103,7 @@ def episodes(name):
 
 @series_module.route('/search')
 def search():
-    try: 
+    try:
         query = request.args.get('q','')
         if query == '': return '[]'
     except KeyError:
