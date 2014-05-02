@@ -46,14 +46,6 @@ def pretty_age_filter(value):
 
 @series_module.route('/')
 def index():
-    try: 
-        argFrom = request.args.get('from','')
-        print 'from arg is',argFrom
-        if argFrom == '': return '[]'
-        else: return json.dumps(getSeriesFromProvider(argFrom))
-    except KeyError:
-        return '[]'
-
     releases = db_session.query(Release).order_by(desc(Release.id)).limit(10).all()
     for release in releases:
         if release.downloaded == False and len(release.episode.releases) > 1:
@@ -65,7 +57,16 @@ def index():
     return render_template('series/series.html', **context)
 
 
+@series_module.route('/sync')
 def getSeriesFromProvider(provider):
+    try: 
+        argFrom = request.args.get('from','')
+        print 'from arg is',argFrom
+        if argFrom == '': return '[]'
+        else: return json.dumps(getSeriesFromProvider(argFrom))
+    except KeyError:
+        return '[]'
+
     if provider == 'xbmc':
         xbmc = XBMC('http://192.168.1.103/jsonrpc')
         series = xbmc.VideoLibrary.GetTVShows({"properties": ['imdbnumber', 'episode', 'fanart']})
